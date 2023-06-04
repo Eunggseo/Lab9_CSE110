@@ -8,82 +8,32 @@
   <title>Lab 9</title>
 
   <style>
-    button {
-      margin: 3px;
-    }
-
-    button:hover {
-      cursor: pointer;
-    }
-
-    #first-num,
-    #second-num {
-      width: 60px;
-    }
-
-    output {
-      border: 1px solid gray;
-      display: block;
-      height: 18px;
-      margin-top: 5px;
-      padding: 5px;
-      width: 240px;
-    }
-
-    main {
-      width: 800px;
-    }
-
-    #error-btns {
-      column-gap: 5px;
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 30px;
-      row-gap: 5px;
-    }
-
-    #error-btns>* {
-      padding: 8px 2px;
-      width: 122px;
-    }
+    /* Styles... */
   </style>
 </head>
 
 <body>
   <main>
     <form>
-      <fieldset>
-        <legend>Error Calculator</legend>
-        <input name="first-num" id="first-num" />
-        <select name="operator" id="operator">
-          <option>+</option>
-          <option>-</option>
-          <option>*</option>
-          <option>/</option>
-        </select>
-        <input name="second-num" id="second-num" />
-        <button id="calculate">Calculate</button>
-        <br />
-        <output></output>
-      </fieldset>
+      <!-- Form code... -->
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button onclick="consoleLogDemo()">Console Log Demo</button>
+      <button onclick="consoleErrorDemo()">Console Error Demo</button>
+      <button onclick="consoleCountDemo()">Console Count Demo</button>
+      <button onclick="consoleWarnDemo()">Console Warn Demo</button>
+      <button onclick="consoleAssertDemo()">Console Assert Demo</button>
+      <button onclick="consoleClearDemo()">Console Clear Demo</button>
+      <button onclick="consoleDirDemo()">Console Dir Demo</button>
+      <button onclick="consoleDirXmlDemo()">Console DirXml Demo</button>
+      <button onclick="consoleGroupStartDemo()">Console Group Start Demo</button>
+      <button onclick="consoleGroupEndDemo()">Console Group End Demo</button>
+      <button onclick="consoleTableDemo()">Console Table Demo</button>
+      <button onclick="startTimerDemo()">Start Timer Demo</button>
+      <button onclick="endTimerDemo()">End Timer Demo</button>
+      <button onclick="consoleTraceDemo()">Console Trace Demo</button>
+      <button onclick="triggerGlobalError()">Trigger a Global Error</button>
     </section>
   </main>
 
@@ -100,8 +50,111 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
-    // Start your code here
-    // You may move this JS to another file if you wish
+    // Console Log Demo
+    function consoleLogDemo() {
+      console.log('This is a console log message.');
+    }
+
+    // Console Error Demo
+    function consoleErrorDemo() {
+      console.error('This is a console error message.');
+    }
+
+    // Console Count Demo
+    function consoleCountDemo() {
+      let count = 0;
+      console.count('Counter');
+      console.count('Counter');
+      console.count('Another Counter');
+      console.count('Counter');
+    }
+
+    // Console Warn Demo
+    function consoleWarnDemo() {
+      console.warn('This is a console warning message.');
+    }
+
+    // Console Assert Demo
+    function consoleAssertDemo() {
+      let value = 10;
+      console.assert(value > 20, 'Assertion failed: value should be greater than 20');
+    }
+
+    // Console Clear Demo
+    function consoleClearDemo() {
+      console.clear();
+    }
+
+    // Console Dir Demo
+    function consoleDirDemo() {
+      let obj = { name: 'John', age: 30, city: 'New York' };
+      console.dir(obj);
+    }
+
+    // Console DirXml Demo
+    function consoleDirXmlDemo() {
+      let xml = '<person><name>John</name><age>30</age></person>';
+      console.dirxml(xml);
+    }
+
+    // Console Group Start Demo
+    function consoleGroupStartDemo() {
+      console.group('Group 1');
+      console.log('Message 1');
+      console.log('Message 2');
+      console.group('Group 2');
+      console.log('Nested message 1');
+      console.log('Nested message 2');
+      console.groupEnd();
+      console.log('Message 3');
+      console.groupEnd();
+      console.log('Message 4');
+    }
+
+    // Console Group End Demo
+    function consoleGroupEndDemo() {
+      console.group('Group');
+      console.log('Message 1');
+      console.groupEnd();
+    }
+
+    // Console Table Demo
+    function consoleTableDemo() {
+      let data = [
+        { name: 'John', age: 30 },
+        { name: 'Jane', age: 25 },
+        { name: 'Bob', age: 40 }
+      ];
+      console.table(data);
+    }
+
+    // Start Timer Demo
+    function startTimerDemo() {
+      console.time('Timer');
+    }
+
+    // End Timer Demo
+    function endTimerDemo() {
+      console.timeEnd('Timer');
+    }
+
+    // Console Trace Demo
+    function consoleTraceDemo() {
+      function innerFunction() {
+        console.trace();
+      }
+
+      function outerFunction() {
+        innerFunction();
+      }
+
+      outerFunction();
+    }
+
+    // Trigger a Global Error
+    function triggerGlobalError() {
+      nonexistentFunction(); // This will throw an error
+    }
   </script>
 </body>
 
