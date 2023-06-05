@@ -87,6 +87,25 @@
   </main>
 
   <script>
+    // Error reporting function
+    function reportError(message, source, line, column, error) {
+      console.log('An error occurred:');
+      console.log('Message:', message);
+      console.log('Source:', source);
+      console.log('Line:', line);
+      console.log('Column:', column);
+      console.log('Error:', error);
+    }
+    // Trigger an error
+    function triggerError() {
+      nonExistentFunction(); // This will throw an error
+    }
+    
+    // Attach error handler
+    window.onerror = function (message, source, line, column, error) {
+      reportError(message, source, line, column, error);
+    };
+    
     class CalculationError extends Error {
       constructor(message) {
         super(message);
@@ -234,6 +253,8 @@
       }
     }
   </script>
+  
+  <button onclick="triggerError()">Trigger Error</button>
 </body>
 
 </html>
