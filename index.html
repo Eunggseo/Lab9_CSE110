@@ -9,13 +9,62 @@
 
   <style>
     /* Styles... */
-  </style>
+  </style>button {
+      margin: 3px;
+    }
+
+    button:hover {
+      cursor: pointer;
+    }
+
+    #first-num,
+    #second-num {
+      width: 60px;
+    }
+
+    output {
+      border: 1px solid gray;
+      display: block;
+      height: 18px;
+      margin-top: 5px;
+      padding: 5px;
+      width: 240px;
+    }
+
+    main {
+      width: 800px;
+    }
+
+    #error-btns {
+      column-gap: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      row-gap: 5px;
+    }
+
+    #error-btns>* {
+      padding: 8px 2px;
+      width: 122px;
+    }
 </head>
 
 <body>
   <main>
     <form>
-      <!-- Form code... -->
+      <legend>Error Calculator</legend>
+        <input name="first-num" id="first-num" />
+        <select name="operator" id="operator">
+          <option>+</option>
+          <option>-</option>
+          <option>*</option>
+          <option>/</option>
+        </select>
+        <input name="second-num" id="second-num" />
+        <button id="calculate">Calculate</button>
+        <br />
+        <output></output>
+      </fieldset>
     </form>
 
     <section id="error-btns">
@@ -38,6 +87,13 @@
   </main>
 
   <script>
+    class CalculationError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = 'CalculationError';
+      }
+    }
+    
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -156,7 +212,7 @@
       nonexistentFunction(); // This will throw an error
     }
     // Function to evaluate the expression and handle errors
-    function evaluateExpression(firstNum, secondNum, operator) {
+     function evaluateExpression(firstNum, secondNum, operator) {
       try {
         // Parsing the input values to numbers
         const num1 = Number(firstNum);
@@ -164,13 +220,17 @@
 
         // Checking for division by zero
         if (operator === '/' && num2 === 0) {
-          throw new Error('Division by zero is not allowed.');
+          throw new CalculationError('Division by zero is not allowed.');
         }
 
         // Evaluating the expression
         return eval(`${num1} ${operator} ${num2}`);
       } catch (error) {
-        return error.message;
+        if (error instanceof CalculationError) {
+          return `${error.name}: ${error.message}`;
+        } else {
+          return 'An unexpected error occurred.';
+        }
       }
     }
   </script>
