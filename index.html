@@ -155,6 +155,24 @@
     function triggerGlobalError() {
       nonexistentFunction(); // This will throw an error
     }
+    // Function to evaluate the expression and handle errors
+    function evaluateExpression(firstNum, secondNum, operator) {
+      try {
+        // Parsing the input values to numbers
+        const num1 = Number(firstNum);
+        const num2 = Number(secondNum);
+
+        // Checking for division by zero
+        if (operator === '/' && num2 === 0) {
+          throw new Error('Division by zero is not allowed.');
+        }
+
+        // Evaluating the expression
+        return eval(`${num1} ${operator} ${num2}`);
+      } catch (error) {
+        return error.message;
+      }
+    }
   </script>
 </body>
 
